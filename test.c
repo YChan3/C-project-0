@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "node.h"
 
 int main(){
@@ -9,12 +10,12 @@ int main(){
 	n0->next = NULL;
 
 	printf("Insert a 1 at the front\n");
-	struct song_node *n1  = insert_front(n0, "song2", "boast malone");
+	struct song_node *n1  = insert_front(0, "song2", "boast malone");
 	print_list(n1);
 
-	printf("Insert a 2 at the front\n");
-	struct song_node *n2  = insert_order(n1, "song3", "coast malone");
-	print_list(n2);
+  printf("Insert a 2 at the front\n");
+  struct song_node *ol0  = insert_order(0, "songA", "A");
+	// print_list(ordered_list0);
 
 	return 0;
 }
