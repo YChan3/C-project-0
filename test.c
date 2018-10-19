@@ -3,7 +3,58 @@
 #include "node.h"
 
 int main(){
-  printf("\n== Testing Library add_song() and print_library() ==\n");
+    printf("++++++++++++++++++LINKED LIST TEST++++++++++++++++++\n");
+    printf("Make a list of nodes using insert_order and print it\n");
+    struct song_node *node = malloc(sizeof(struct song_node));
+    node = NULL;
+    node  = insert_order(node, "song1", "artist0");
+    node  = insert_order(node, "song2", "artist0");
+    node  = insert_order(node, "song0", "artist1");
+    node  = insert_order(node, "song1", "artist1");
+    node  = insert_order(node, "song2", "artist1");
+    node  = insert_order(node, "song0", "artist2");
+    node  = insert_order(node, "song1", "artist2");
+    node  = insert_order(node, "song2", "artist2");
+    node  = insert_front(node, "song0", "artist0");
+    print_list(node);
+
+    printf("\nfind using a song and artist test\n");
+    printf("%s\n","pointer to the node with song1 by artist1" );
+    struct song_node *fsa0  = find_song_artist(node, "song1", "artist1");
+    print_list(fsa0);
+
+    printf("\nfind the first song by an artist test\n");
+    printf("%s\n","pointer to the node with the first song by artist1");
+    struct song_node *fss0  = find_first_song(node, "artist1");
+    print_list(fss0);
+
+    printf("\nfind a random song test\n");
+    printf("%s\n","first random song");
+    struct song_node *rs0  = rand_song(node);
+    print_list(rs0);
+    printf("\n%s\n","second random song");
+    rs0  = rand_song(node);
+    print_list(rs0);
+    printf("\n%s\n","third random song");
+    rs0  = rand_song(node);
+    print_list(rs0);
+
+    printf("\nREMOVE SONGS test\n");
+    printf("%s\n","removed song0 by artist2, remaining list");
+    node = rem_song(node, find_song_artist(node, "song0", "artist2"));
+    print_list(node);
+    printf("%s\n","removed song1 by artist2, remaining list");
+    node = rem_song(node, find_song_artist(node, "song2", "artist2"));
+    print_list(node);
+    printf("%s\n","removed song1 by artist0, remaining list");
+    node = rem_song(node, find_song_artist(node, "song0", "artist0"));
+    print_list(node);
+
+    printf("\nFREE LIST test\n");
+    node = free_list(node);
+    print_list(node);
+
+    printf("\n== Testing Library add_song() and print_library() ==\n");
     add_song("Billie Jean", "Michael Jackson");
     add_song("Thriller", "Michael Jackson");
     add_song("Im Still Here", "Sia");
