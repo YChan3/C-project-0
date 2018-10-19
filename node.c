@@ -51,7 +51,7 @@ struct song_node * insert_order(struct song_node *head, char *song, char *compos
  }
 
  struct song_node *previous = malloc(sizeof(struct song_node));
- current = head;
+ previous = head;
 
  while(current  && (strcmp(composer, current->artist)>0 || (strcmp(composer, current->artist)==0 && strcmp(song, current->name) > 0))){
   previous = current;
@@ -102,17 +102,22 @@ struct song_node * rem_song(struct song_node *head, struct song_node *rem){
   struct song_node *current = malloc(sizeof(struct song_node));
   current = head;
 
+  struct song_node *previous = malloc(sizeof(struct song_node));
+  previous = head;
+
   if(head == rem){
     head = rem->next;
     return head;
   }
 
+  current = current->next;
   while(current){
-    if(current->next == rem){
-      current->next = rem->next;
-      return current;
+    if(current == rem){
+      previous->next = rem->next;
+      return head;
     }
+    previous = current;
     current = current->next;
   }
-  return current;
+  return head;
 }
