@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "linked_list.h"
 
 struct song_node{
  	char name[100];

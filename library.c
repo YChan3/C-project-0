@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "node.h"
+#include "linked_list.h"
+#include "library.h"
 
 struct song_node *lib[27];
 void np(struct song_node *x){

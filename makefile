@@ -1,11 +1,14 @@
-all:	test.o node.o
-	gcc -o out test.o node.o
+all: test.o library.o linked_list.o
+	gcc -o out test.o library.o linked_list.o
 
-node.o: node.c
-	gcc -c node.c
-
-testing.o: test.c node.h
+test.o: test.c library.h linked_list.h
 	gcc -c test.c
+
+library.o: library.c linked_list.h
+	gcc -c library.c
+
+linked_list.o: linked_list.c
+	gcc -c linked_list.c
 
 run:
 	./out
