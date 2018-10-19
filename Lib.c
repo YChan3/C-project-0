@@ -3,10 +3,12 @@
 #include <string.h>
 #include <time.h>
 #include "node.h"
-#include "library.h"
 
 struct song_node *lib[27];
-
+void np(struct song_node *x){
+  printf("%s", x->artist);
+  printf(": %s \n", x->name);
+}
 int ind(char c){
   if(65 <= c && c <= 90){
     return (int ) c - 'A';
@@ -35,7 +37,10 @@ struct song_node * random_song(){
 }
 
 void shuffle( int n){
-  struct song_node *lib2[27]=lib;
+  struct song_node *lib2[27];
+  for(int i=0; i <27; i++){
+    lib2[i]=lib[i];
+  }
   while(n--){
     int x = rand() % 27;
     while(rand_song(lib2[x])==NULL){
@@ -47,10 +52,6 @@ void shuffle( int n){
   }
 }
 
-void np(struct song_node *x){
-  printf("%s", x->artist);
-  printf(": %s \n", x->name);
-}
 
 void print_letter( char s){
   int x=ind(s);
