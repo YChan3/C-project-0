@@ -3,68 +3,53 @@
 #include "node.h"
 
 int main(){
-	printf("current list\n");
-	struct song_node *n0  = insert_front(0, "song0", "artist0");
-	struct song_node *n1  = insert_front(n0, "song1", "artist0");
-	struct song_node *n2  = insert_front(n1, "song2", "artist0");
-	struct song_node *n3  = insert_front(n2, "song0", "artist1");
-	struct song_node *n4  = insert_front(n3, "song1", "artist1");
-	struct song_node *n5  = insert_front(n4, "song2", "artist1");
-	struct song_node *n6  = insert_front(n5, "song0", "artist2");
-	struct song_node *n7  = insert_front(n6, "song1", "artist2");
-	struct song_node *n8  = insert_front(n7, "song2", "artist2");
-	print_list(n8);
-  //
-  // printf("\nfind_song_artist test\n");
-  // struct song_node *fsa0  = find_song_artist(n8, "song1", "artist1");
-  // print_list(fsa0);
-  //
-  // printf("\nfind_first_song test\n");
-  // struct song_node *fss0  = find_first_song(n8, "artist0");
-  // print_list(fss0);
-  //
-  // printf("\nrand_song test\n");
-  // struct song_node *rs0  = rand_song(n8);
-  // print_list(rs0);
-  //
-  printf("\nrem_song test\n");
-  n8 = rem_song(n8, find_song_artist(n8, "song0", "artist2"));
-  print_list(n8);
+  printf("\n== Testing Library add_song() and print_library() ==\n");
+    add_song("Billie Jean", "Michael Jackson");
+    add_song("Thriller", "Michael Jackson");
+    add_song("Im Still Here", "Sia");
+    add_song("You Say", "Lauren");
+    add_song("Champion", "Kanye West");
+    add_song("Despacito", "Luis Fonsi");
+    add_song("TTD", "NAV");
+    print_library();
+        
 
-  printf("\nrem_song test\n");
-  n8 = rem_song(n8, find_song_artist(n8, "song1", "artist2"));
-  print_list(n8);
+    printf("\n== Testing Library  find and song() ==\n");
+    printf("Searching for Billie Jean by Michael Jackson\n");
+    find_artist( "Billie Jean", "Michael Jackson");
+    printf("Searching for Thriller by Michael Jackson \n");
+    find_artist( "Thriller", "Michael Jackson");
 
-  printf("\nrem_song test\n");
-  n8 = rem_song(n8, find_song_artist(n8, "song1", "artist0"));
-  print_list(n8);
+    printf("\n== Testing Library search_artist() ==\n");
+    printf("Searching for the first song by Kanye\n");
+    print_node(search_artist( "Kanye West"));
+    printf("Searching for the first song by Luis Fonsi\n");
+    print_node(search_artist( "Luis Fonsi"));
+  
+    printf("\n== Testing Library print_letter() ==\n");
+    printf("Printing songs from aritsts starting with N\n");
+    print_letter('N');
+    printf("Printing songs from aritsts starting with K\n");
+    print_letter('K');
 
-  // struct song_node *node = malloc(sizeof(struct song_node));
-  // node = NULL;
-  //
-	// printf("first node for insert_order\n");
-	// node = insert_order(node, "song1", "artist4");
-	// print_list(node);
-  //
-	// printf("first node for insert_order\n");
-	// node = insert_order(node, "song1", "artist2");
-	// print_list(node);
-  //
-	// printf("first node for insert_order\n");
-	// node = insert_order(node, "song1", "artist3");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// node = insert_order(node, "song2", "artist2");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// node = insert_order(node, "song0", "artist2");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// node = insert_order(node, "song1", "artist2");
-	// print_list(node);
+    printf("\n== Testing Library print_artist() ==\n");
+    printf("Printing songs from Michael Jackson\n");
+    print_artist( "Michael Jackson");
+    printf("Printing songs from Kanye West\n");
+    print_artist( "Kanye West");
 
-	return 0;
+    printf("\n== Testing Library shuffle() ==\n");
+    shuffle( 4);
+    shuffle( 3);
+
+    printf("\n== Testing Library delete_song() ==\n");
+    printf("Deleting Thriller by Michael Jackson\n");
+    delete_song("Thriller", "Michael Jackson");
+    print_library();
+
+    printf("\n== Testing Library free_library() ==\n");
+    free_library();
+    printf("Printing freed library:\n");
+    print_library();
+    return 0;
 }
