@@ -31,32 +31,32 @@ int main(){
   // rem_song(n8, fsa0);
   // print_list(n8);
 
-  // struct song_node *node = malloc(sizeof(struct song_node));
-  // node = NULL;
-  //
-	// printf("first node for insert_order\n");
-	// insert_order(node, "song1", "artist4");
-	// print_list(node);
-  //
-	// printf("first node for insert_order\n");
-	// insert_order(node, "song1", "artist2");
-	// print_list(node);
-  //
-	// printf("first node for insert_order\n");
-	// insert_order(node, "song1", "artist3");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// insert_order(node, "song2", "artist2");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// insert_order(node, "song0", "artist2");
-	// print_list(node);
-  //
-  // printf("first node for insert_order\n");
-	// insert_order(node, "song1", "artist2");
-	// print_list(node);
+  struct song_node *node = malloc(sizeof(struct song_node));
+  node = NULL;
+
+	printf("first node for insert_order\n");
+	node = insert_order(node, "song1", "artist4");
+	print_list(node);
+
+	printf("first node for insert_order\n");
+	node = insert_order(node, "song1", "artist2");
+	print_list(node);
+
+	printf("first node for insert_order\n");
+	node = insert_order(node, "song1", "artist3");
+	print_list(node);
+
+  printf("first node for insert_order\n");
+	node = insert_order(node, "song2", "artist2");
+	print_list(node);
+
+  printf("first node for insert_order\n");
+	node = insert_order(node, "song0", "artist2");
+	print_list(node);
+
+  printf("first node for insert_order\n");
+	node = insert_order(node, "song1", "artist2");
+	print_list(node);
 
 	return 0;
 }

@@ -38,36 +38,29 @@ struct song_node * insert_order(struct song_node *head, char *song, char *compos
 	strcpy(new->name, song);
 	strcpy(new->artist, composer);
 
-	struct song_node *current = malloc(sizeof(struct song_node));
+  struct song_node *current = malloc(sizeof(struct song_node));
   current = head;
 
 	if(!current){
-    strcpy(head->name, song);
-  	strcpy(head->artist, composer);
 		return new;
 	}
 
-	while(current){
-		 if(strcmp(composer, current->artist) < 0 ){
-			new->next = current;
-			return new;
-		}
+  if(strcmp(composer, current->artist) < 0 || (strcmp(composer, current->artist) == 0 && strcmp(song, current->name) < 0)){
+   new->next = current;
+   return new;
+ }
 
-		else if(strcmp(composer, current->artist) > 0){
-			current=current->next;
-		}
-		else if(strcmp(composer, current->artist) == 0){
-			if(strcmp(song, current->name) < 0 || strcmp(song, current->name) == 0){
-				new->next = current;
-				return new;
-			}
-			else if(strcmp(song, current->name) > 0){
-				current = current -> next;
-			}
-		}
-	}
-	new->next = current;
-	return new;
+ struct song_node *previous = malloc(sizeof(struct song_node));
+ current = head;
+
+ while(current  && (strcmp(composer, current->artist)>0 || (strcmp(composer, current->artist)==0 && strcmp(song, current->name) > 0))){
+  previous = current;
+  current = current -> next;
+ }
+
+ new->next = current;
+ previous->next = new;
+ return head;
 }
 
 struct song_node * find_song_artist(struct song_node *head, char *song, char *composer){
