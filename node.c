@@ -30,7 +30,7 @@ struct song_node * free_list(struct song_node *head){
 		free(head);
 		head = release;
 	}
-	return head;
+	return NULL;
 }
 
 struct song_node * insert_order(struct song_node *head, char *song, char *composer){
