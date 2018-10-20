@@ -65,6 +65,7 @@ struct song_node * find_song_artist(struct song_node *head, char *song, char *co
     }
     head = head->next;
   }
+  return NULL;
 }
 
 struct song_node * find_first_song(struct song_node *head, char *composer){
@@ -74,6 +75,7 @@ struct song_node * find_first_song(struct song_node *head, char *composer){
     }
     head = head->next;
   }
+  return NULL;
 }
 
 struct song_node * rand_song(struct song_node *head){

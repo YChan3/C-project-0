@@ -66,17 +66,19 @@ int main(){
     print_library();
 
 
-    printf("\n== Testing Library  find and song() ==\n");
+    printf("\n== Testing Library  find artist  and song ==\n");
     printf("Searching for Billie Jean by Michael Jackson\n");
-    find_artist( "Billie Jean", "Michael Jackson");
+    print_node(find_artist( "Billie Jean", "Michael Jackson"));
     printf("Searching for Thriller by Michael Jackson \n");
-    find_artist( "Thriller", "Michael Jackson");
+    print_node(find_artist( "Thriller", "Michael Jackson"));
+    printf("Searching for Bhriller by Bichael Backson \n");
+    print_node(find_artist( "Bhriller", "Bichael Jackson"));
 
     printf("\n== Testing Library search_artist() ==\n");
-    printf("Searching for the first song by Kanye\n");
-    print_node(search_artist( "Kanye West"));
-    printf("Searching for the first song by Luis Fonsi\n");
-    print_node(search_artist( "Luis Fonsi"));
+    printf("Searching for the  songs by Kanye\n");
+    print_node(find_song( "Kanye West"));
+    printf("Searching for the  songs by Luis Fonsi\n");
+    print_node(find_song( "Luis Fonsi"));
 
     printf("\n== Testing Library print_letter() ==\n");
     printf("Printing songs from aritsts starting with N\n");
@@ -86,20 +88,20 @@ int main(){
 
     printf("\n== Testing Library print_artist() ==\n");
     printf("Printing songs from Michael Jackson\n");
-    print_artist( "Michael Jackson");
+    print_artist("Michael Jackson");
     printf("Printing songs from Kanye West\n");
-    print_artist( "Kanye West");
+    print_artist("Kanye West");
 
     printf("\n== Testing Library shuffle() ==\n");
-    shuffle( 4);
-    shuffle( 3);
+    shuffle();
 
     printf("\n== Testing Library delete_song() ==\n");
-    printf("Deleting Thriller by Michael Jackson\n");
-    delete_song("Thriller", "Michael Jackson");
+    printf("Deleting Billie Jean by Michael Jackson\n");
+    delete_song("Billie Jean", "Michael Jackson");
     print_library();
 
     printf("\n== Testing Library free_library() ==\n");
+    print_library();
     free_library();
     printf("Printing freed library:\n");
     print_library();

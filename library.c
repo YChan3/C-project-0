@@ -2,13 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "linked_list.h"
 #include "library.h"
 
 struct song_node *lib[27];
+struct song_node *lib2[27];
+
 void np(struct song_node *x){
   printf("%s", x->artist);
   printf(": %s \n", x->name);
+}
+void print_node(struct song_node *x){
+  if(x==NULL){
+    printf("Artist and Song not found");
+    return;
+  }
+  print_list(x);
 }
 int ind(char c){
   if(65 <= c && c <= 90){
@@ -37,21 +45,6 @@ struct song_node * random_song(){
     return rand_song(lib[x]);
 }
 
-void shuffle( int n){
-  struct song_node *lib2[27];
-  for(int i=0; i <27; i++){
-    lib2[i]=lib[i];
-  }
-  while(n--){
-    int x = rand() % 27;
-    while(rand_song(lib2[x])==NULL){
-      x=rand()%27;
-    }
-    np(rand_song(lib2[x]));
-    rem_song(lib2[x], find_song_artist(lib2[x], lib2[x]->name, lib2[x]->artist));
-
-  }
-}
 
 
 void print_letter( char s){
@@ -60,8 +53,8 @@ void print_letter( char s){
 
 }
 
-void print_artist( char *s){
-  int x=ind(s);
+void print_artist(char *s){
+  int x=ind(s[0]);
   struct song_node *a = lib[x];
   while(a){
     if(strcmp(a->artist,s)==0){
@@ -71,6 +64,8 @@ void print_artist( char *s){
   }
 }
 
+
+
 void print_library(){
   for(int i=0; i<27; i++){
     print_list(lib[i]);
@@ -79,17 +74,51 @@ void print_library(){
 
 void * free_library(){
     for(int i = 0; i < 27; i++){
-        free_list(lib[i]);
+        lib[i]=free_list(lib[i]);
     }
-    return 0;
 }
 
 void  add_song(char name[], char artist[]){
     int index =ind(artist[0]);
-     insert_ordered(lib[index], name, artist);
+    lib[index]= insert_order(lib[index], name, artist);
 }
 
 void  delete_song(char name[], char artist[]){
     int index =ind(artist[0]);
-    rem_song(lib[index], find_song_artist(lib[index], name, artist));
+    lib[index]=rem_song(lib[index], find_song_artist(lib[index], name, artist));
 }
+
+void shuffle(){
+  int n=0;
+  for(int i=0; i <27; i++){
+    if(lib[i]!=NULL){
+      lib2[i]=lib[i];
+    }
+  }
+  for(int i=0; i<27; i++){
+    while(lib2[i]){
+      n++;
+      lib2[i]= lib2[i]->next;
+    }
+  }
+  printf("%i",n);
+   for(int i=0; i <27; i++){
+    if(lib[i]!=NULL){
+      lib2[i]=lib[i];
+    }
+  }
+ srand(time(NULL));
+  while(n!=0){
+    int x = rand() % 27;
+    while(lib2[x]==NULL){
+      x=rand()%27;
+    }
+    struct song_node *z=rand_song(lib2[x]);
+    np(z);
+    lib2[x]=rem_song(lib2[x], find_song_artist(lib2[x], z->name, z->artist));
+    n--;
+  }
+ 
+}
+
+
