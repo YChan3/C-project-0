@@ -4,12 +4,6 @@
 #include <time.h>
 #include "linked_list.h"
 
-struct song_node{
- 	char name[100];
-  	char artist[100];
-	struct song_node *next;
-};
-
 void print_list(struct song_node *head){
 	while(head){
 		printf("%s, %s\n", head->name, head->artist);
